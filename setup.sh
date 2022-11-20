@@ -1,6 +1,18 @@
-if [ "setup" = $1 ]; then
+if [ "setup project" = $1 ]; then
     echo "Running microservice setup"
     exec pip install -r microservice/scrapping_datbase_api/requirements.txt
+    exit;
+fi
+
+if [ "makemigrations" = $1 ]; then
+    echo "Running migrations"
+    exec python3 microservice/scrapping_datbase_api/manage.py makemigrations
+    exit;
+fi
+
+if [ "migrate" = $1 ]; then
+    echo "Migrate database configuration"
+    exec python3 microservice/scrapping_datbase_api/manage.py migrate
     exit;
 fi
 
