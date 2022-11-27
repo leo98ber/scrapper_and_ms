@@ -1,11 +1,17 @@
-if [ "setup project" = $1 ]; then
-    echo "Running microservice setup"
+if [ "setup_microservice" = $1 ]; then
+    echo "Running install microservice requirements"
     exec pip install -r microservice/scrapping_datbase_api/requirements.txt
     exit;
 fi
 
+if [ "setup_scrapper" = $1 ]; then
+    echo "Running install scrapper requirements"
+    exec pip install -r scrapper/aplication/requirements.txt
+    exit;
+fi
+
 if [ "makemigrations" = $1 ]; then
-    echo "Running migrations"
+    echo "Make migrations"
     exec python3 microservice/scrapping_datbase_api/manage.py makemigrations
     exit;
 fi
@@ -17,11 +23,17 @@ if [ "migrate" = $1 ]; then
 fi
 
 if [ "microservice" = $1 ]; then
-    echo "Running microservice"
+    echo "Running DRF microservice"
     exec python3 microservice/scrapping_datbase_api/manage.py runserver
     exit;
 fi
 
 
-echo "Your first argument must be either 'setup', 'microservice'"
+if [ "runscrapper" = $1 ]; then
+    echo "Running scrapper"
+    exec python3 scrapper/aplication/main.py
+    exit;
+fi
+
+echo "Error invalid argument, please README.md"
 exit 5;
