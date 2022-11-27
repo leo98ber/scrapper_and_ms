@@ -73,5 +73,6 @@ tests/__init__.py
 # Development task artifacts
 default.db
 venv/
-*venv/
+scrapper/venv/
+microservice/venv/
 *.deb
