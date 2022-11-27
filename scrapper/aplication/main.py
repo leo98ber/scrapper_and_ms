@@ -6,22 +6,21 @@ from time import sleep
 import json
 
 import os
-import sys
 
 import errors
 import vars
 
 
-def query_to_service(data):
+def query_to_service(scrapping_data):
     base_url = vars.URLS.get('base_url')
     microservice_url = f'{base_url}/'
 
-    if data:
-        response = requests.post(url=microservice_url, data=json.dumps(data),
+    if scrapping_data:
+        response = requests.post(url=microservice_url, data=json.dumps(scrapping_data),
                                  headers={'Content-Type': 'application/json'})
 
         if response.status_code == 201:
-            os.system(f'echo Scrapping data was saved successfully: {data}')
+            os.system(f'echo Scrapping data was saved successfully: {scrapping_data}')
         else:
             raise errors.UnexpectedErrorFromService('Failed save data')
 
